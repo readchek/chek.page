@@ -1,16 +1,24 @@
 {
-  "name": "@chek/website",
+  "name": "chek.page",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "bun --hot src/server.ts",
     "build": "bun scripts/build.ts",
     "typecheck": "bun check",
-    "deploy": "bun run build && cf deploy --prebuilt"
+    "deploy": "bun run build && cf deploy --prebuilt",
+    "lint": "oxlint --deny-warnings .",
+    "lint:fix": "oxlint --fix .",
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check ."
   },
   "devDependencies": {
     "@cloudflare/build-output-utils": "0.8.6",
     "@types/bun": "latest",
-    "cf": "^1.0.0-beta.13"
-  }
+    "cf": "^1.0.0-beta.13",
+    "oxfmt": "^0.71.0",
+    "oxlint": "^1.86.0",
+    "typescript": "^7"
+  },
+  "packageManager": "bun@1.4.3"
 }

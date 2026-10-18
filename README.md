@@ -1,22 +1,33 @@
-# Chek website
+<p align="center">
+  <img src="public/assets/logos/mark.svg" alt="Chek" width="80" height="80" />
+</p>
 
-The landing page at [chek.page](https://chek.page), with an interactive reading
-preview. The preview is a concept, not a connected reader client.
+<h1 align="center">chek.page</h1>
 
-Run from the repository root:
+<p align="center">The landing page for <a href="https://github.com/readchek/chek">Chek</a>, live at <a href="https://chek.page">chek.page</a>.</p>
+
+The page includes an interactive reading preview. The preview is a concept, not
+a connected reader client.
+
+## Development
+
+Install [Bun](https://bun.sh), then run:
 
 ```sh
 bun install
-bun run dev:website
+bun run dev
 ```
 
 Open [localhost:18357](http://127.0.0.1:18357/). Set `PORT` to use another port.
 
 ```sh
-bun run build:website
+bun run build
 ```
 
-The static build is written to `apps/website/dist/`.
+The static build is written to `dist/`.
 
-See the [website guide](../../docs/website.md) for deployment, asset maintenance,
-font licenses, and provider logo sources.
+Check code with `bun run lint` and `bun run format:check`.
+
+See the [website guide](docs/website.md) for deployment, asset maintenance,
+font licenses, and provider logo sources, and the [design guide](docs/design.md)
+for the visual direction.

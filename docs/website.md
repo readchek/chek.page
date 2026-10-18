@@ -4,26 +4,22 @@ The landing page is a static site at [chek.page](https://chek.page). Its reader
 preview is a concept, not a connected app or server demo. See [design](design.md)
 for the visual direction.
 
-Paths below are relative to `apps/website/` unless stated otherwise.
-
 ## Local development
 
-From the repository root:
-
 ```sh
-bun run dev:website
-bun run build:website
+bun run dev
+bun run build
 ```
 
 The preview runs at [localhost:18357](http://127.0.0.1:18357/). Override with
-`PORT`. The static build is written to `apps/website/dist/`.
+`PORT`. The static build is written to `dist/`.
 
 ## Deployment
 
-From the repository root, after signing in with `cf auth login`:
+After signing in with `cf auth login`:
 
 ```sh
-bun run deploy:website
+bun run deploy
 ```
 
 The command builds the static site with Bun and publishes it with
@@ -42,8 +38,7 @@ Generated output is ignored by Git.
 - `dist/`: generated static build, ignored by Git.
 
 `tsconfig.json` enables Bun HTML-import types and browser DOM types. Run
-`bun run --filter @chek/website typecheck`, or use the root `bun run typecheck`
-to check every workspace.
+`bun run typecheck`.
 
 ## Artwork, fonts, and loading
 

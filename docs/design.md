@@ -8,7 +8,7 @@ it does not imply that the current app implements these choices.
 Chek is a versatile e-reader for local files and provider-backed libraries, including
 e-books, manga, manhwa, and comics. Its visual identity can lean into manga and
 manhwa, but navigation and copy must make the wider reading scope clear. See
-[product direction](product.md) for the distinction between Chibi Manga today and
+[product direction](https://github.com/readchek/chek/blob/main/docs/product.md) for the distinction between Chibi Manga today and
 the new Chek clients and server.
 
 ## Landing page direction
@@ -18,7 +18,7 @@ feel combines cobalt and paper surfaces, large Bricolage type, and original mang
 Its messaging explains books and comics, local files, and choice of provider.
 Introduce the project without a SaaS sales pitch; keep the layout and copy focused
 on the reader rather than a conversion funnel. The selected page lives in
-`apps/website/`. The existing Chek mark is selected: two page shapes with a zigzag that gives it
+this repository. The existing Chek mark is selected: two page shapes with a zigzag that gives it
 a books-and-comics character. Future work may refine its spacing and small-size
 clarity without replacing the concept. Official Komga and Kavita logos identify those providers.
 

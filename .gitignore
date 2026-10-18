@@ -1,0 +1,21 @@
+node_modules/
+dist/
+out/
+coverage/
+*.tsbuildinfo
+*.log
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# Share editor settings even when .vscode is globally ignored.
+!.vscode/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Cloudflare deployment artifacts
+.cloudflare/
+
+.agents/
