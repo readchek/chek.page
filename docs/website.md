@@ -35,7 +35,24 @@ Generated output is ignored by Git.
 - `public/assets/fonts/`: local typefaces and their licenses.
 - `public/assets/logos/`: Chek and official provider marks.
 - `public/assets/images/`: original reading artwork.
+- `public/extensions/`: the official extension repository, served at
+  `https://chek.page/extensions/index.json`, which Chek servers list by
+  default.
 - `dist/`: generated static build, ignored by Git.
+
+## Extension repository
+
+`public/extensions/` is generated, not edited. Build it from the Chek
+repository and copy the output here:
+
+```sh
+../chek/extensions/build.sh "$PWD/public/extensions"
+```
+
+The build writes one `<source>-<version>.wasm` per source and an
+`index.json` with each component's digest. Components are served immutable,
+since a new version gets a new name; the index is revalidated, so servers
+pick up new versions when they refresh.
 
 `tsconfig.json` enables Bun HTML-import types and browser DOM types. Run
 `bun run typecheck`.

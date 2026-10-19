@@ -1,0 +1,21 @@
+{
+  "name": "Chek",
+  "extensions": [
+    {
+      "id": "page.chek.mangadex",
+      "name": "MangaDex",
+      "version": "0.1.0",
+      "file": "mangadex-0.1.0.wasm",
+      "sha256": "0c2eadc17bed7855c4993ed17298c78e4e74055eba1604017c943b63816eec0c",
+      "sites": [
+        "api.mangadex.org",
+        "uploads.mangadex.org",
+        "*.mangadex.network"
+      ],
+      "languages": [
+        "en"
+      ],
+      "capabilities": []
+    }
+  ]
+}
