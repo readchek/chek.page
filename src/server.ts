@@ -1,9 +1,11 @@
 import index from "./index.html"
+import privacy from "./privacy.html"
+import support from "./support.html"
 
 const server = Bun.serve({
   hostname: "127.0.0.1",
   port: Number(process.env.PORT || 18357),
-  routes: { "/": index },
+  routes: { "/": index, "/privacy": privacy, "/support": support },
   async fetch(request) {
     const pathname = new URL(request.url).pathname
     if (pathname === "/favicon.ico") {
