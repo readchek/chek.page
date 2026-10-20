@@ -13,7 +13,7 @@ const dist = resolve(root, "dist")
 
 await rm(dist, { recursive: true, force: true })
 const build = await Bun.build({
-  entrypoints: [resolve(root, "src/index.html")],
+  entrypoints: ["index", "privacy", "support"].map((page) => resolve(root, `src/${page}.html`)),
   outdir: dist,
   minify: true,
   external: ["*.woff2"],
