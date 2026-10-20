@@ -4,9 +4,9 @@
     {
       "id": "page.chek.mangadex",
       "name": "MangaDex",
-      "version": "0.1.0",
-      "file": "mangadex-0.1.0.wasm",
-      "sha256": "0c2eadc17bed7855c4993ed17298c78e4e74055eba1604017c943b63816eec0c",
+      "version": "0.2.0",
+      "file": "mangadex-0.2.0.wasm",
+      "sha256": "7a68afd6aa4b7f662898b3250186ec9a7669daa96c8b797b294388d7c6b38dba",
       "sites": [
         "api.mangadex.org",
         "uploads.mangadex.org",
