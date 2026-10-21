@@ -19,7 +19,7 @@ jobs:
     name: Lint, type check and build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       # The same Bun as the packageManager field in package.json, since
       # `bun check` needs 1.4.3 or later.
       - uses: oven-sh/setup-bun@v2
