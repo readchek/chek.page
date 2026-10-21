@@ -26,7 +26,8 @@ bun run build
 
 The static build is written to `dist/`.
 
-Check code with `bun run lint` and `bun run format:check`.
+Check code with `bun run lint`, `bun run format:check` and `bun run typecheck`. CI runs
+them and the build on every pull request.
 
 See the [website guide](docs/website.md) for deployment, asset maintenance,
 font licenses, and provider logo sources, and the [design guide](docs/design.md)
