@@ -182,8 +182,9 @@
               manhwa, and comics.
             </p>
             <p>
-              We’re working toward a clean, tension-free reading experience across a wide range of
-              formats. Native clients come first, starting with iOS.
+              Its reading engine is open source and handles EPUB, PDF, comic archives, FictionBook,
+              Markdown and plain text, with search and a clean, tension-free layout. Native clients
+              come first, starting with iOS.
             </p>
           </div>
         </div>
@@ -199,7 +200,7 @@
         <div class="library-layout wrap">
           <div
             class="library-visual"
-            aria-label="Illustration of local files, Komga, Kavita, and the planned Chek server as sources for a books and comics library"
+            aria-label="Illustration of local files, Komga, Kavita, and the Chek server as sources for a books and comics library"
           >
             <div class="source-row">
               <div class="source-chip source-local">
@@ -281,16 +282,16 @@
                   width="32"
                   height="32"
                 />
-                <div>Chek server<small>In development</small></div>
+                <div>Chek server<small>Self-hosted</small></div>
               </div>
             </div>
-            <p class="illustration-note">Planned sources. Illustrative library and titles.</p>
+            <p class="illustration-note">Illustrative library and titles.</p>
           </div>
           <div class="library-copy">
             <h2 id="library-title">Where your<br />books live.</h2>
             <p class="section-description">
-              Use the files on your device or connect a library server. Both are part of the plan
-              for Chek.
+              Use the files on your device or connect a library server. Chek reads from both, and
+              you choose which.
             </p>
             <div class="source-description">
               <h3>Local files</h3>
@@ -302,15 +303,16 @@
             <div class="source-description">
               <h3>Komga and Kavita</h3>
               <p>
-                Connect the reader to your preferred open-source library service. Komga and Kavita
-                are planned sources.
+                Connect the reader to the open-source library service you already run. Chek reads
+                your Komga or Kavita libraries and keeps your place in sync with them.
               </p>
             </div>
             <div class="source-description">
               <h3>Chek server</h3>
               <p>
-                A standalone, open-source library server is also in development. It will be another
-                source you can choose, alongside local files and other providers.
+                Chek’s own open-source library server, for a folder of books and comics on a machine
+                you run. It ships as a Docker image and serves OPDS too, so other readers can use
+                it.
               </p>
             </div>
           </div>
@@ -320,12 +322,12 @@
         <div class="next-note"><span class="status-dot"></span> An ongoing personal project.</div>
         <h2 id="next-title">Still taking shape.</h2>
         <p>
-          The reader and Chek server are in development.<br />iOS is the first client. Other
-          platforms are planned.
+          The reader and Chek server are open source and built in the open.<br />The iOS app is the
+          first client and is not released yet. Other platforms are planned.
         </p>
         <a
           class="button button-dark"
-          href="https://github.com/chibi-app/chek"
+          href="https://github.com/readchek/chek"
           target="_blank"
           rel="noreferrer"
           >Development on GitHub
@@ -339,7 +341,7 @@
       <a class="brand" href="#" aria-label="Chek home"><span>chek</span></a
       ><span>For the love of the next chapter.</span
       ><span><a href="/privacy">Privacy</a> · <a href="/support">Support</a></span
-      ><a href="https://github.com/chibi-app/chek" target="_blank" rel="noreferrer"
+      ><a href="https://github.com/readchek/chek" target="_blank" rel="noreferrer"
         >GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8" /></svg
       ></a>
     </footer>
