@@ -42,17 +42,16 @@ Generated output is ignored by Git.
 
 ## Extension repository
 
-`public/extensions/` is generated, not edited. Build it from the Chek
-repository and copy the output here:
+The official repository lists no extensions for now: sources live in their
+own repositories and are published with `chek ext` from the Chek repository.
+Its `index.json` stays so servers that list it by default keep reading a
+valid, empty repository.
 
-```sh
-../chek/extensions/build.sh "$PWD/public/extensions"
-```
-
-The build writes one `<source>-<version>.wasm` per source and an
-`index.json` with each component's digest. Components are served immutable,
-since a new version gets a new name; the index is revalidated, so servers
-pick up new versions when they refresh.
+To publish here again, build with `chek ext build --out "$PWD/public/extensions"`.
+It writes one `<source>-<version>.wasm` per source and an `index.json` with
+each component's digest. Components are served immutable, since a new version
+gets a new name; the index is revalidated, so servers pick up new versions
+when they refresh.
 
 `tsconfig.json` enables Bun HTML-import types and browser DOM types. Run
 `bun run typecheck`.
