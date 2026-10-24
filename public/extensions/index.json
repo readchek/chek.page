@@ -4,13 +4,14 @@
     {
       "id": "page.chek.comix",
       "name": "Comix",
-      "version": "0.1.0",
-      "file": "comix-0.1.0.wasm",
-      "sha256": "f4c510bdc45baf50cdb3475029e9e95eaeead61bffbd439c5289c720a63b648f",
+      "version": "0.1.1",
+      "file": "comix-0.1.1.wasm",
+      "sha256": "14576426f7ea3edb41398f6b0cbb21e682fa7b90558d88e1840aaf6db67d2356",
       "sites": [
         "comix.to",
         "comix.ws",
         "static.comix.to",
+        "*.kkplayer.wtf",
         "challenges.cloudflare.com",
         "*.softlifejournal.site",
         "*.notesbyamber.site",
