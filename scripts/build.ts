@@ -45,8 +45,7 @@ await Bun.write(
   (await index.text()).replaceAll("/assets/images/last-train.webp", artworkPath),
 )
 
-// The official extension repository, built in the Chek repository's
-// `extensions/`. Components carry their version in their names, so they're
+// The official extension repository, built with `chek ext build`. Components carry their version in their names, so they're
 // immutable; the index is revalidated so servers see new versions.
 for await (const name of new Bun.Glob("*").scan(resolve(root, "public/extensions"))) {
   await Bun.write(
