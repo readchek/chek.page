@@ -36,7 +36,7 @@ Generated output is ignored by Git.
 - `public/assets/logos/`: Chek and official provider marks.
 - `public/assets/images/`: app screens, covers, comic pages, the app icon and
   the link preview image.
-- `public/assets/video/`: the launch film and its posters.
+- `public/assets/video/`: the launch film's posters. The film itself is on R2.
 - `public/extensions/`: the official extension repository, served at
   `https://chek.page/extensions/index.json`, which Chek servers list by
   default.
@@ -76,8 +76,11 @@ credits. They're the ones the App Store art and the film use.
 previews. It keeps a fixed name so the absolute URL in the page's meta tags
 stays valid.
 
-The launch film is the promo video re-encoded to 720p H.264 at 30 fps, about
-1.7 MB in each shape: 16:9, and 9:16 for phones held upright. It loads only when
+The launch film is served from Cloudflare R2 at
+`https://assets.chek.page/chek-promo-16x9.mp4` and `chek-promo-9x16.mp4`, the
+latter for phones held upright, rather than from this repository. Replace those
+files to change the film, keeping it fast-start (`-movflags +faststart`) so it
+streams, and regenerate the posters here. It loads only when
 it scrolls into view, then plays muted and loops, unless the visitor prefers
 reduced motion or saves data. Its posters are the title frame, 4 seconds in.
 
