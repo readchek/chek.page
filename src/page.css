@@ -25,8 +25,7 @@
 .page p {
   margin-top: 16px;
 }
-.page a,
-.footer span a {
+.page a {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
@@ -36,8 +35,7 @@
 }
 @media (max-width: 700px) {
   .page-header.wrap,
-  .page.wrap,
-  .footer.wrap {
+  .page.wrap {
     width: calc(100% - 32px);
   }
 }

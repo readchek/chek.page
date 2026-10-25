@@ -22,6 +22,11 @@ this repository. The existing Chek mark is selected: two page shapes with a zigz
 a books-and-comics character. Future work may refine its spacing and small-size
 clarity without replacing the concept. Official Komga and Kavita logos identify those providers.
 
+On 2026-10-25, with Chek 2.0 on the App Store, the page was redone around the
+app itself, in the brand the App Store art and web app share: blue, paper, mist
+and butter, Bricolage headlines and DM Sans text. Real screens replace the
+concept reader, and the page leads to the App Store.
+
 This is a landing-page direction, not a decision to apply its colors or fonts to
 the iOS app. Keep the app decisions below separate from the website study.
 
