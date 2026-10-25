@@ -79,7 +79,7 @@ stays valid.
 The launch film is the promo video re-encoded to 720p H.264 at 30 fps, about
 1.7 MB in each shape: 16:9, and 9:16 for phones held upright. It loads only when
 it scrolls into view, then plays muted and loops, unless the visitor prefers
-reduced motion or saves data. Its posters are frames from 10 seconds in.
+reduced motion or saves data. Its posters are the title frame, 4 seconds in.
 
 Production uses three local WOFF2 fonts, about 73 KB combined, preloaded with
 matching anonymous CORS mode. Original TTF files remain as masters; only WOFF2
