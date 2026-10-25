@@ -1,8 +1,8 @@
 # Website guide
 
-The landing page is a static site at [chek.page](https://chek.page). Its reader
-preview is a concept, not a connected app or server demo. See [design](design.md)
-for the visual direction.
+The landing page is a static site at [chek.page](https://chek.page) that
+introduces the Chek app on the App Store. See [design](design.md) for the visual
+direction.
 
 ## Local development
 
@@ -34,7 +34,9 @@ Generated output is ignored by Git.
 - `scripts/`: Bun build and Cloudflare static-output preparation.
 - `public/assets/fonts/`: local typefaces and their licenses.
 - `public/assets/logos/`: Chek and official provider marks.
-- `public/assets/images/`: original reading artwork.
+- `public/assets/images/`: app screens, covers, comic pages, the app icon and
+  the link preview image.
+- `public/assets/video/`: the launch film and its posters.
 - `public/extensions/`: the official extension repository, served at
   `https://chek.page/extensions/index.json`, which Chek servers list by
   default.
@@ -58,20 +60,35 @@ when they refresh.
 
 ## Artwork, fonts, and loading
 
-The artwork was generated with the built-in imagegen tool. The page uses `public/assets/images/last-train.webp`: about 652 KB, at 1024 × 1536. The other two sample covers and the logo are code-native graphics. Sample titles are fictional, not catalog claims.
+The app screens are cut from the App Store screenshots (`apple/AppStore` in
+readchek/app): the screen inside each device, from its top edge to the bottom of
+the slide, 1008 × 2056 for iPhone and 1632 × 1939 for iPad. They stop above the
+tab bar, so the page always shows phones rising from a cropped edge and draws
+the bezel and Dynamic Island in CSS. Each is a WebP at quality 80, 360px and
+720px wide for iPhone and 800px and 1400px for iPad, picked by screen density.
+Redo them when the App Store art changes.
 
-The landing page uses 512px (151 KB) and 768px (287 KB) WebP versions of the artwork, selected by screen density. Both hero illustrations share the same image URL. The shelf uses a lazy-loaded 256px cover (39 KB). The original 1024px artwork loads only when the reader preview opens; it is retained for detailed reading. These smaller derivatives use WebP quality 82.
+Covers come from Standard Ebooks and Project Gutenberg, in the public domain, and
+the comic pages from Pepper&Carrot by David Revoy, CC BY 4.0, which the footer
+credits. They're the ones the App Store art and the film use.
+
+`og.jpg` is the App Store's universal header art cut to 1200 × 630 for link
+previews. It keeps a fixed name so the absolute URL in the page's meta tags
+stays valid.
+
+The launch film is the promo video re-encoded to 720p H.264 at 30 fps, about
+1.7 MB in each shape: 16:9, and 9:16 for phones held upright. It loads only when
+it scrolls into view, then plays muted and loops, unless the visitor prefers
+reduced motion or saves data. Its posters are frames from 10 seconds in.
 
 Production uses three local WOFF2 fonts, about 73 KB combined, preloaded with
 matching anonymous CORS mode. Original TTF files remain as masters; only WOFF2
 files are deployed. Fonts stay separate from the stylesheet. The local
 development bundler may embed fonts.
 
-Font filenames include the first 12 characters of their SHA-256 content hash. Regenerate their names, CSS references, and preload links together if the font files change. The build generates `_headers` rules with `Cache-Control: public, max-age=31536000, immutable` for versioned fonts, CSS, JavaScript, artwork, provider marks, and favicon assets. HTML and the conventional `/favicon.ico` keep Cloudflare's default revalidation policy, so future releases still appear. The detailed artwork also receives a content-hashed URL during the build.
+Font filenames include the first 12 characters of their SHA-256 content hash. Regenerate their names, CSS references, and preload links together if the font files change. The build generates `_headers` rules with `Cache-Control: public, max-age=31536000, immutable` for versioned fonts, CSS, JavaScript, artwork, provider marks, and favicon assets. HTML, `og.jpg` and the conventional `/favicon.ico` keep Cloudflare's default revalidation policy, so future releases still appear. The upright film's poster, which the script picks, also receives a content-hashed URL during the build.
 
-The reader shows the already loaded hero artwork immediately, then swaps to the detailed page after decoding. If loading fails, the preview stays readable and reopening retries. The dialog keeps focus contained, restores focus to its trigger, supports Escape, and sizes its canvas around the controls. Close and mode controls have 44px hit areas. Custom buttons disable native appearance so Safari preserves their intended colors. Pointer hover effects are gated to suitable devices; reduced motion disables button movement.
-
-The full-size WebP was encoded with `cwebp -q 88 -m 6 -sharp_yuv`. The original PNG is not retained in this repository.
+Sections fade in as they scroll into view only when scripts run and motion is welcome. Pointer hover effects are gated to suitable devices, and links and buttons have 44px hit areas.
 
 ## Mark exports and site icons
 

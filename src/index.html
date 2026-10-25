@@ -2,13 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#2448e8" />
+    <title>Chek: Books & Comics — Just one more chapter.</title>
     <meta
       name="description"
-      content="Chek is the ground-up successor to Chibi Manga: an e-reader for your books and comics, wherever you keep them. Local files or your choice of library server. iOS first."
+      content="Chek is a reader for your books and comics, wherever you keep them. EPUB, PDF, comics, MOBI and more on iPhone and iPad, from your own files or your own library server. Free on the App Store."
     />
-    <title>Chek — Just one more chapter.</title>
+    <link rel="canonical" href="https://chek.page/" />
+    <meta name="apple-itunes-app" content="app-id=6761271144" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Chek" />
+    <meta property="og:url" content="https://chek.page/" />
+    <meta property="og:title" content="Chek: Books & Comics — Just one more chapter." />
+    <meta
+      property="og:description"
+      content="A reader for your books and comics, on your iPhone and iPad. Free on the App Store."
+    />
+    <meta property="og:image" content="https://chek.page/assets/images/og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Three iPhones showing Chek's home, a comic and a book, under the words Just one more chapter."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="../public/assets/logos/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="icon" href="../public/assets/logos/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="icon" href="../public/assets/logos/mark.svg" type="image/svg+xml" sizes="any" />
@@ -36,360 +54,642 @@
       crossorigin
     />
     <link rel="stylesheet" href="./styles.css" />
+    <script>
+      document.documentElement.classList.add("js")
+    </script>
     <script type="module" src="./main.ts"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Chek: Books & Comics",
+        "operatingSystem": "iOS 26, iPadOS 26",
+        "applicationCategory": "BookApplication",
+        "url": "https://chek.page/",
+        "downloadUrl": "https://apps.apple.com/app/chek-books-comics/id6761271144",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <main id="main">
-      <div class="blue-cover">
-        <header class="header wrap">
-          <a class="brand" href="#" aria-label="Chek home"
-            ><svg viewBox="0 0 40 40" aria-hidden="true">
-              <path
-                d="M7 7h11v25H7a4 4 0 0 1-4-4V11a4 4 0 0 1 4-4Zm15 0h11a4 4 0 0 1 4 4v17a4 4 0 0 1-4 4H22Z"
-                fill="currentColor"
-              />
-              <path
-                d="m9 19 4 4 7-8 7 8 4-4"
-                fill="none"
-                stroke="#2448e8"
-                stroke-width="3"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              /></svg
-            ><span>chek</span></a
-          >
-          <nav aria-label="Main navigation">
-            <a href="#reader">The reader</a><a href="#library">Your library</a
-            ><a href="#next">What’s next</a>
-          </nav>
-          <a class="header-status" href="#next"
-            ><span class="status-dot"></span> iOS in the works
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8" /></svg
-          ></a>
-        </header>
+    <header class="site-header" id="site-header">
+      <div class="header-inner wrap">
+        <a class="brand" href="#top" aria-label="Chek home"
+          ><svg viewBox="0 0 40 40" aria-hidden="true">
+            <path
+              d="M7 7h11v25H7a4 4 0 0 1-4-4V11a4 4 0 0 1 4-4Zm15 0h11a4 4 0 0 1 4 4v17a4 4 0 0 1-4 4H22Z"
+              fill="currentColor"
+            />
+            <path
+              class="brand-zigzag"
+              d="m9 19 4 4 7-8 7 8 4-4"
+              fill="none"
+              stroke-width="3"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            /></svg
+          ><span>chek</span></a
+        >
+        <nav aria-label="Main navigation">
+          <a href="#comics">Reading</a><a href="#library">Library</a><a href="#servers">Servers</a
+          ><a href="#watch">Watch</a>
+        </nav>
+        <a
+          class="header-cta"
+          href="https://apps.apple.com/app/chek-books-comics/id6761271144"
+          rel="noreferrer"
+          >Get the app</a
+        >
+      </div>
+    </header>
 
-        <section class="hero wrap" aria-labelledby="hero-title">
-          <div class="hero-copy">
-            <p class="intro">Books. Comics. Me time.</p>
-            <h1 id="hero-title">Just one<br />more<br />chapter.</h1>
-            <p class="hero-description">
-              A new e-reader for books and comics.<br />Local files or your choice of library
-              server.
-            </p>
-            <button class="button button-light" id="open-reader-hero">
-              Try the reader preview
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
-            </button>
-            <p class="release-note">The ground-up successor to Chibi Manga. iOS first.</p>
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy wrap">
+          <a class="launch-pill" href="https://apps.apple.com/app/chek-books-comics/id6761271144"
+            ><span class="pill-dot" aria-hidden="true"></span>Chek 2.0 is out now on the App Store
+            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m6 3 5 5-5 5" /></svg
+          ></a>
+          <h1 id="hero-title">Just one more chapter.</h1>
+          <p class="hero-lede">
+            A reader for your books and comics, on iPhone and iPad. Open your own files, or read
+            from a library server you run.
+          </p>
+          <div class="hero-actions">
+            <a
+              class="store-button"
+              href="https://apps.apple.com/app/chek-books-comics/id6761271144"
+              rel="noreferrer"
+              ><img
+                src="../public/assets/images/app-icon-256.webp"
+                alt=""
+                width="40"
+                height="40"
+              /><span><small>Download on the</small>App Store</span></a
+            >
+            <a class="ghost-button" href="#watch"
+              ><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>Watch
+              the film</a
+            >
           </div>
-          <div class="hero-art">
-            <div class="paper-page" aria-hidden="true">
+          <p class="hero-meta">Free · iPhone and iPad · No account needed</p>
+        </div>
+
+        <div class="hero-stage" aria-hidden="true">
+          <div class="float float-page float-a">
+            <img
+              src="../public/assets/images/pepper-carrot-ep10-01-480.webp"
+              alt=""
+              width="480"
+              height="664"
+              decoding="async"
+            />
+          </div>
+          <div class="float float-cover float-b">
+            <img
+              src="../public/assets/images/cover-secret-garden-300.webp"
+              alt=""
+              width="300"
+              height="450"
+              decoding="async"
+            />
+          </div>
+          <div class="float float-cover float-c">
+            <img
+              src="../public/assets/images/cover-alice-300.webp"
+              alt=""
+              width="300"
+              height="429"
+              decoding="async"
+            />
+          </div>
+          <div class="float float-page float-d">
+            <img
+              src="../public/assets/images/pepper-carrot-ep08-01-480.webp"
+              alt=""
+              width="480"
+              height="664"
+              decoding="async"
+            />
+          </div>
+          <div class="phone phone-side phone-left">
+            <picture>
+              <source
+                media="(min-resolution: 1.5dppx)"
+                srcset="../public/assets/images/iphone-comic-720.webp"
+              />
+              <img
+                src="../public/assets/images/iphone-comic-360.webp"
+                alt=""
+                width="1008"
+                height="2056"
+                decoding="async"
+              />
+            </picture>
+          </div>
+          <div class="phone phone-center">
+            <picture>
+              <source
+                media="(min-resolution: 1.5dppx)"
+                srcset="../public/assets/images/iphone-home-720.webp"
+              />
+              <img
+                src="../public/assets/images/iphone-home-360.webp"
+                alt=""
+                width="1008"
+                height="2056"
+                fetchpriority="high"
+              />
+            </picture>
+          </div>
+          <div class="phone phone-side phone-right">
+            <picture>
+              <source
+                media="(min-resolution: 1.5dppx)"
+                srcset="../public/assets/images/iphone-appearance-720.webp"
+              />
+              <img
+                src="../public/assets/images/iphone-appearance-360.webp"
+                alt=""
+                width="1008"
+                height="2056"
+                decoding="async"
+              />
+            </picture>
+          </div>
+          <div class="bubble hero-bubble">The world<br />can wait.</div>
+        </div>
+      </section>
+
+      <section class="formats" aria-label="Formats Chek reads">
+        <div class="marquee">
+          <ul class="marquee-track">
+            <li>EPUB</li>
+            <li>PDF</li>
+            <li>CBZ</li>
+            <li>CBT</li>
+            <li>MOBI</li>
+            <li>AZW3</li>
+            <li>FictionBook</li>
+            <li>Markdown</li>
+            <li>Plain text</li>
+          </ul>
+          <ul class="marquee-track" aria-hidden="true">
+            <li>EPUB</li>
+            <li>PDF</li>
+            <li>CBZ</li>
+            <li>CBT</li>
+            <li>MOBI</li>
+            <li>AZW3</li>
+            <li>FictionBook</li>
+            <li>Markdown</li>
+            <li>Plain text</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="features wrap">
+        <section class="feature feature-night reveal" id="comics" aria-labelledby="comics-title">
+          <div class="feature-copy">
+            <p class="eyebrow">Comics, manga, manhwa</p>
+            <h2 id="comics-title">Comics that fill the screen.</h2>
+            <p>
+              Smooth, full-bleed pages, edge to edge. Turn page by page or scroll a long strip, and
+              read right to left when the story calls for it.
+            </p>
+            <ul class="tags" aria-label="Comic formats">
+              <li>CBZ</li>
+              <li>CBT</li>
+              <li>PDF</li>
+            </ul>
+          </div>
+          <div class="feature-shot">
+            <div class="phone">
               <picture>
                 <source
                   media="(min-resolution: 1.5dppx)"
-                  srcset="../public/assets/images/last-train-768.webp"
+                  srcset="../public/assets/images/iphone-comic-720.webp"
                 />
                 <img
-                  src="../public/assets/images/last-train-512.webp"
-                  alt=""
-                  width="1024"
-                  height="1536"
-                  fetchpriority="high"
+                  src="../public/assets/images/iphone-comic-360.webp"
+                  alt="Chek reading Pepper&Carrot episode 8, three full-width comic panels on a black screen"
+                  width="1008"
+                  height="2056"
+                  loading="lazy"
                   decoding="async"
                 />
               </picture>
-              <div class="paper-caption">
-                <span>The last train</span><span>A little further.</span>
-              </div>
             </div>
-            <div class="speech-bubble" aria-hidden="true">The world<br />can wait.</div>
+            <div class="float float-page feature-float" aria-hidden="true">
+              <img
+                src="../public/assets/images/pepper-carrot-ep08-01-480.webp"
+                alt=""
+                width="480"
+                height="664"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section class="feature feature-sepia reveal" id="books" aria-labelledby="books-title">
+          <div class="feature-copy">
+            <p class="eyebrow">Books</p>
+            <h2 id="books-title">Read your way.</h2>
+            <p>
+              Sepia or dark, any size, the font you like. Slide or curl the pages. Close the book
+              anytime and it opens right where you left off.
+            </p>
+            <div class="swatches" aria-hidden="true">
+              <span class="swatch swatch-light">Aa</span><span class="swatch swatch-sepia">Aa</span
+              ><span class="swatch swatch-dark">Aa</span>
+            </div>
+          </div>
+          <div class="feature-shot">
             <div class="phone">
-              <div class="phone-status" aria-hidden="true">
-                <span>9:41</span><span class="island"></span
-                ><svg viewBox="0 0 40 14">
-                  <path d="M1 10V8m4 2V5m4 5V2" stroke="currentColor" stroke-width="2" />
-                  <path
-                    d="M14 4q6-6 12 0m-9 3q3-3 6 0"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  />
-                  <circle cx="20" cy="10" r="1" fill="currentColor" />
-                  <rect
-                    x="29"
-                    y="3"
-                    width="9"
-                    height="7"
-                    rx="1"
-                    fill="none"
-                    stroke="currentColor"
-                  />
-                  <path d="M31 5h5v3h-5zM39 5v3" fill="currentColor" stroke="currentColor" />
-                </svg>
-              </div>
-              <div class="phone-toolbar">
-                <span aria-hidden="true">‹</span>
-                <div>The last train<small>Chapter 1</small></div>
-                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 3h8v14l-4-3-4 3z" /></svg>
-              </div>
-              <button
-                class="phone-page"
-                id="open-reader"
-                aria-label="Open the illustrated reader concept"
-              >
+              <picture>
+                <source
+                  media="(min-resolution: 1.5dppx)"
+                  srcset="../public/assets/images/iphone-appearance-720.webp"
+                />
+                <img
+                  src="../public/assets/images/iphone-appearance-360.webp"
+                  alt="The Secret Garden in Chek's sepia theme, with the Appearance panel offering text size, themes and page turn styles"
+                  width="1008"
+                  height="2056"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </div>
+            <div class="bubble feature-bubble" aria-hidden="true">Just you<br />and the page.</div>
+          </div>
+        </section>
+
+        <section class="feature feature-mist reveal" id="library" aria-labelledby="library-title">
+          <div class="feature-copy">
+            <p class="eyebrow">Your own files</p>
+            <h2 id="library-title">Every format. One shelf.</h2>
+            <p>
+              Open books and comics from Files, iCloud Drive or the share sheet. No account needed,
+              and everything works offline.
+            </p>
+            <p class="feature-note">
+              Coming from Chibi Manga? Your books move over on their own, and keep your place.
+            </p>
+          </div>
+          <div class="feature-shot">
+            <div class="phone">
+              <picture>
+                <source
+                  media="(min-resolution: 1.5dppx)"
+                  srcset="../public/assets/images/iphone-library-720.webp"
+                />
+                <img
+                  src="../public/assets/images/iphone-library-360.webp"
+                  alt="Chek's library, a grid of classic book covers and comics"
+                  width="1008"
+                  height="2056"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </div>
+            <span class="sticker sticker-1" aria-hidden="true">EPUB</span>
+            <span class="sticker sticker-2" aria-hidden="true">PDF</span>
+            <span class="sticker sticker-3" aria-hidden="true">MOBI</span>
+            <span class="sticker sticker-4" aria-hidden="true">FB2</span>
+          </div>
+        </section>
+
+        <div class="bento">
+          <section class="tile tile-paper reveal" aria-labelledby="search-title">
+            <h3 id="search-title">Find it in seconds.</h3>
+            <p>One search across your shelf, shared libraries and sites.</p>
+            <div class="tile-shot">
+              <div class="phone">
                 <picture>
                   <source
                     media="(min-resolution: 1.5dppx)"
-                    srcset="../public/assets/images/last-train-768.webp" />
+                    srcset="../public/assets/images/iphone-search-720.webp"
+                  />
                   <img
-                    src="../public/assets/images/last-train-512.webp"
-                    alt="An original manga page of a courier riding a train through a coastal city"
-                    width="1024"
-                    height="1536"
-                    decoding="async" /></picture
-                ><span class="expand-hint"
-                  ><svg viewBox="0 0 20 20" aria-hidden="true">
-                    <path d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4" />
-                  </svg>
-                  Take a closer look</span
-                >
-              </button>
-              <div class="phone-bottom">
-                <span>1 / 1</span><span class="reading-track"></span><span>Chapter 1</span>
-              </div>
-              <div class="home-indicator" aria-hidden="true"></div>
-            </div>
-            <p class="art-note">
-              A peek at the reading experience.<br />Concept preview, original artwork.
-            </p>
-          </div>
-        </section>
-        <div class="cover-footer wrap">
-          <span>A personal project, in development.</span
-          ><a href="#reader"
-            >Keep going
-            <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v12m-4-4 4 4 4-4" /></svg
-          ></a>
-        </div>
-      </div>
-      <section class="reading-section wrap" id="reader" aria-labelledby="reader-title">
-        <div class="section-heading project-intro">
-          <h2 id="reader-title">The next chapter<br />of Chibi Manga.</h2>
-          <div>
-            <p>
-              Chek is a ground-up redesign of Chibi Manga, becoming a reader for e-books, manga,
-              manhwa, and comics.
-            </p>
-            <p>
-              Its reading engine is open source and handles EPUB, PDF, comic archives, FictionBook,
-              Markdown and plain text, with search and a clean, tension-free layout. Native clients
-              come first, starting with iOS.
-            </p>
-          </div>
-        </div>
-        <div class="reader-invitation">
-          <span>A small look at the reading direction.</span
-          ><button class="text-button" id="open-reader-secondary">
-            Open the reader preview
-            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h14m-6-6 6 6-6 6" /></svg>
-          </button>
-        </div>
-      </section>
-      <section class="library-section" id="library" aria-labelledby="library-title">
-        <div class="library-layout wrap">
-          <div
-            class="library-visual"
-            aria-label="Illustration of local files, Komga, Kavita, and the Chek server as sources for a books and comics library"
-          >
-            <div class="source-row">
-              <div class="source-chip source-local">
-                <span class="file-icon" aria-hidden="true"
-                  ><svg viewBox="0 0 24 24">
-                    <path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6m-6 4h6" /></svg
-                ></span>
-                <div>Local files<small>On your device</small></div>
-              </div>
-              <div class="source-chip source-komga">
-                <img
-                  class="provider-logo"
-                  src="../public/assets/logos/komga-logo.svg"
-                  alt=""
-                  width="32"
-                  height="32"
-                />
-                <div>Komga<small>Your library server</small></div>
-              </div>
-            </div>
-            <div class="connector-line" aria-hidden="true"></div>
-            <div class="shelf-preview">
-              <div class="shelf-title">
-                <span>Your library</span
-                ><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 4v12M4 10h12" /></svg>
-              </div>
-              <div class="shelf-books" aria-hidden="true">
-                <div class="book book-train">
-                  <img
-                    src="../public/assets/images/last-train-256.webp"
-                    alt=""
-                    width="256"
-                    height="384"
+                    src="../public/assets/images/iphone-search-360.webp"
+                    alt="Search results in Chek, grouped by library and site"
+                    width="1008"
+                    height="2056"
                     loading="lazy"
                     decoding="async"
-                  /><span>THE<br />LAST<br />TRAIN</span>
-                </div>
-                <div class="book book-orbit">
-                  <svg viewBox="0 0 100 150">
-                    <circle cx="50" cy="70" r="31" />
-                    <ellipse cx="50" cy="70" rx="47" ry="13" transform="rotate(-30 50 70)" />
-                    <path d="M18 23h4m-2-2v4M80 111h6m-3-3v6" /></svg
-                  ><span>AFTER<br />ORBIT</span>
-                </div>
-                <div class="book book-summer">
-                  <span>Summer,<br />again.</span
-                  ><svg viewBox="0 0 100 120">
-                    <path
-                      d="M-10 60q30-40 60 0t60 0M-10 80q30-40 60 0t60 0M-10 100q30-40 60 0t60 0"
-                    />
-                    <circle cx="65" cy="24" r="16" />
-                  </svg>
-                </div>
-              </div>
-              <div class="shelf-formats" aria-hidden="true">
-                <span>Manga</span><span>Comic</span><span>E-book</span>
-              </div>
-              <div class="shelf-bottom">
-                <span>Stories worth coming back to.</span><span aria-hidden="true">♡</span>
+                  />
+                </picture>
               </div>
             </div>
-            <div class="connector-line bottom-line" aria-hidden="true"></div>
-            <div class="source-row">
-              <div class="source-chip source-kavita">
-                <img
-                  class="provider-logo"
-                  src="../public/assets/logos/kavita-logo.svg"
-                  alt=""
-                  width="32"
-                  height="32"
-                />
-                <div>Kavita<small>Your library server</small></div>
-              </div>
-              <div class="source-chip source-chek">
-                <img
-                  class="provider-logo"
-                  src="../public/assets/logos/mark.svg"
-                  alt=""
-                  width="32"
-                  height="32"
-                />
-                <div>Chek server<small>Self-hosted</small></div>
+          </section>
+          <section class="tile tile-peach reveal" aria-labelledby="classics-title">
+            <h3 id="classics-title">Classics, ready to read.</h3>
+            <p>Browse public-domain books and open comics from your Chek library.</p>
+            <div class="tile-shot">
+              <div class="phone">
+                <picture>
+                  <source
+                    media="(min-resolution: 1.5dppx)"
+                    srcset="../public/assets/images/iphone-site-720.webp"
+                  />
+                  <img
+                    src="../public/assets/images/iphone-site-360.webp"
+                    alt="Project Gutenberg Classics in Chek, with Pride and Prejudice, Frankenstein and more"
+                    width="1008"
+                    height="2056"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </div>
             </div>
-            <p class="illustration-note">Illustrative library and titles.</p>
-          </div>
-          <div class="library-copy">
-            <h2 id="library-title">Where your<br />books live.</h2>
-            <p class="section-description">
-              Use the files on your device or connect a library server. Chek reads from both, and
-              you choose which.
+          </section>
+          <section class="tile tile-lilac reveal" aria-labelledby="family-title">
+            <h3 id="family-title">One library for the family.</h3>
+            <p>Share a library at home, and everyone keeps their own place.</p>
+            <div class="tile-shot">
+              <div class="phone">
+                <picture>
+                  <source
+                    media="(min-resolution: 1.5dppx)"
+                    srcset="../public/assets/images/iphone-shared-720.webp"
+                  />
+                  <img
+                    src="../public/assets/images/iphone-shared-360.webp"
+                    alt="A shared Family Library in Chek, with recently added books, collections and sites"
+                    width="1008"
+                    height="2056"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <section class="servers" id="servers" aria-labelledby="servers-title">
+        <div class="servers-inner wrap">
+          <div class="servers-copy reveal">
+            <p class="eyebrow">Library servers</p>
+            <h2 id="servers-title">Your library, at home or away.</h2>
+            <p>
+              Connect a Chek server you run, and read its libraries on every device. Your place
+              follows you from iPhone to iPad.
             </p>
-            <div class="source-description">
-              <h3>Local files</h3>
-              <p>
-                Open your own books and comics on your device. You won’t need to run a server to use
-                the reader.
-              </p>
+            <ul class="checks">
+              <li>Follow a series and hear when a new chapter is out.</li>
+              <li>Download chapters to read offline.</li>
+              <li>Already run Komga or Kavita? Chek server can read those libraries too.</li>
+            </ul>
+            <div class="servers-actions">
+              <a
+                class="text-link"
+                href="https://github.com/readchek/chek"
+                target="_blank"
+                rel="noreferrer"
+                >Set up Chek server
+                <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h14m-6-6 6 6-6 6" /></svg
+              ></a>
             </div>
-            <div class="source-description">
-              <h3>Komga and Kavita</h3>
-              <p>
-                Connect the reader to the open-source library service you already run. Chek reads
-                your Komga or Kavita libraries and keeps your place in sync with them.
-              </p>
+            <p class="servers-demo">
+              No server yet? Tap <strong>Try the Demo</strong> in the app for a sample library of
+              public-domain and Creative Commons books and comics.
+            </p>
+          </div>
+          <div class="sources reveal" aria-label="Places Chek reads from">
+            <div class="source">
+              <span class="source-icon source-icon-files"
+                ><svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6m-6 4h6" /></svg
+              ></span>
+              <div><strong>Your files</strong><small>On your iPhone or iPad</small></div>
             </div>
-            <div class="source-description">
-              <h3>Chek server</h3>
-              <p>
-                Chek’s own open-source library server, for a folder of books and comics on a machine
-                you run. It ships as a Docker image and serves OPDS too, so other readers can use
-                it.
-              </p>
+            <div class="source">
+              <img
+                class="source-icon"
+                src="../public/assets/logos/mark.svg"
+                alt=""
+                width="44"
+                height="44"
+                loading="lazy"
+              />
+              <div><strong>Chek server</strong><small>Open source, self-hosted</small></div>
+            </div>
+            <div class="source">
+              <img
+                class="source-icon source-icon-logo"
+                src="../public/assets/logos/komga-logo.svg"
+                alt=""
+                width="44"
+                height="44"
+                loading="lazy"
+              />
+              <div><strong>Komga</strong><small>Through Chek server</small></div>
+            </div>
+            <div class="source">
+              <img
+                class="source-icon source-icon-logo"
+                src="../public/assets/logos/kavita-logo.svg"
+                alt=""
+                width="44"
+                height="44"
+                loading="lazy"
+              />
+              <div><strong>Kavita</strong><small>Through Chek server</small></div>
             </div>
           </div>
         </div>
       </section>
-      <section class="next-section wrap" id="next" aria-labelledby="next-title">
-        <div class="next-note"><span class="status-dot"></span> An ongoing personal project.</div>
-        <h2 id="next-title">Still taking shape.</h2>
-        <p>
-          The reader and Chek server are open source and built in the open.<br />The iOS app is the
-          first client and is not released yet. Other platforms are planned.
-        </p>
-        <a
-          class="button button-dark"
-          href="https://github.com/readchek/chek"
-          target="_blank"
-          rel="noreferrer"
-          >Development on GitHub
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" /></svg
+
+      <section class="ipad wrap" aria-labelledby="ipad-title">
+        <div class="ipad-copy reveal">
+          <h2 id="ipad-title">Made for iPad, too.</h2>
+          <p>Room for a full spread, and the same shelf on every screen.</p>
+        </div>
+        <div class="ipad-stage reveal">
+          <div class="tablet">
+            <picture>
+              <source
+                media="(min-resolution: 1.5dppx)"
+                srcset="../public/assets/images/ipad-home-1400.webp"
+              />
+              <img
+                src="../public/assets/images/ipad-home-800.webp"
+                alt="Chek on iPad, with Continue Reading and Recently Added shelves full of covers"
+                width="1632"
+                height="1939"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+          <div class="phone ipad-phone">
+            <picture>
+              <source
+                media="(min-resolution: 1.5dppx)"
+                srcset="../public/assets/images/iphone-comic-720.webp"
+              />
+              <img
+                src="../public/assets/images/iphone-comic-360.webp"
+                alt=""
+                width="1008"
+                height="2056"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        </div>
+      </section>
+
+      <section class="watch" id="watch" aria-labelledby="watch-title">
+        <div class="watch-inner wrap">
+          <div class="watch-heading reveal">
+            <h2 id="watch-title">Thirty seconds of Chek.</h2>
+            <p>Books, comics and the shelf they live on, in motion.</p>
+          </div>
+          <div class="film reveal">
+            <video
+              id="film"
+              playsinline
+              muted
+              loop
+              preload="none"
+              poster="../public/assets/video/promo-16x9-poster.webp"
+              data-poster-tall="/assets/video/promo-9x16-poster.webp"
+              aria-label="Chek launch film: the home screen, a comic, a book in sepia, search and a shared family library"
+            >
+              <source
+                src="../public/assets/video/promo-9x16.mp4"
+                type="video/mp4"
+                media="(max-width: 640px) and (orientation: portrait)"
+              />
+              <source src="../public/assets/video/promo-16x9.mp4" type="video/mp4" />
+            </video>
+            <div class="film-controls">
+              <button class="film-button" id="film-play" type="button" aria-pressed="false">
+                <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M8 5.5v13l11-6.5z" />
+                </svg>
+                <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 5h3.5v14H7zm6.5 0H17v14h-3.5z" />
+                </svg>
+                <span class="film-label">Play</span>
+              </button>
+              <button class="film-button" id="film-sound" type="button" aria-pressed="false">
+                <svg class="icon-muted" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 9h4l5-4v14l-5-4H4zM16 9l5 6m0-6-5 6" />
+                </svg>
+                <svg class="icon-sound" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4 9h4l5-4v14l-5-4H4zM16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12" />
+                </svg>
+                <span class="film-label">Sound on</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="values wrap" aria-labelledby="values-title">
+        <h2 id="values-title" class="reveal">Quiet by design.</h2>
+        <div class="values-grid">
+          <div class="value reveal">
+            <h3>No ads.</h3>
+            <p>Nothing between you and the page.</p>
+          </div>
+          <div class="value reveal">
+            <h3>No tracking.</h3>
+            <p>No analytics, and no data collected. Your files stay on your device.</p>
+          </div>
+          <div class="value reveal">
+            <h3>No account.</h3>
+            <p>Open a book and read. Servers are there when you want them.</p>
+          </div>
+        </div>
+        <a class="text-link values-link" href="/privacy"
+          >Read the privacy policy
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 10h14m-6-6 6 6-6 6" /></svg
         ></a>
-        <p class="next-small">No release date just yet.</p>
-        <span class="end-mark" aria-hidden="true">つづく</span>
+      </section>
+
+      <section class="open wrap" aria-labelledby="open-title">
+        <div class="open-card reveal">
+          <div>
+            <h2 id="open-title">Built in the open.</h2>
+            <p>
+              The reading engine and the library server are open source. Use them, read them, run
+              them yourself.
+            </p>
+          </div>
+          <div class="repos">
+            <a
+              class="repo"
+              href="https://github.com/readchek/chek-reader"
+              target="_blank"
+              rel="noreferrer"
+              ><strong>Chek Reader</strong
+              ><span>The Swift reading engine for EPUB, PDF, comics and more.</span></a
+            >
+            <a class="repo" href="https://github.com/readchek/chek" target="_blank" rel="noreferrer"
+              ><strong>Chek server</strong
+              ><span>A self-hosted library server, shipped as a Docker image.</span></a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="finale" aria-labelledby="finale-title">
+        <div class="finale-inner wrap reveal">
+          <img
+            class="finale-icon"
+            src="../public/assets/images/app-icon-256.webp"
+            alt=""
+            width="112"
+            height="112"
+            loading="lazy"
+          />
+          <h2 id="finale-title">Your next chapter is waiting.</h2>
+          <p>Free on the App Store, for iPhone and iPad.</p>
+          <a
+            class="store-button"
+            href="https://apps.apple.com/app/chek-books-comics/id6761271144"
+            rel="noreferrer"
+            ><img
+              src="../public/assets/images/app-icon-256.webp"
+              alt=""
+              width="40"
+              height="40"
+              loading="lazy"
+            /><span><small>Download on the</small>App Store</span></a
+          >
+          <p class="finale-note">Chibi Manga is now Chek.</p>
+          <span class="end-mark" aria-hidden="true">つづく</span>
+        </div>
       </section>
     </main>
-    <footer class="footer wrap">
-      <a class="brand" href="#" aria-label="Chek home"><span>chek</span></a
-      ><span>For the love of the next chapter.</span
-      ><span><a href="/privacy">Privacy</a> · <a href="/support">Support</a></span
-      ><a href="https://github.com/readchek/chek" target="_blank" rel="noreferrer"
-        >GitHub <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 12 12 4M4 4h8v8" /></svg
-      ></a>
+
+    <footer class="footer">
+      <div class="footer-inner wrap">
+        <a class="brand" href="#top" aria-label="Chek home"><span>chek</span></a>
+        <nav aria-label="Footer">
+          <a href="https://apps.apple.com/app/chek-books-comics/id6761271144" rel="noreferrer"
+            >App Store</a
+          ><a href="/support">Support</a><a href="/privacy">Privacy</a
+          ><a href="https://github.com/readchek" target="_blank" rel="noreferrer">GitHub</a>
+        </nav>
+        <p class="credits">
+          Pepper&amp;Carrot by David Revoy,
+          <a href="https://www.peppercarrot.com" target="_blank" rel="noreferrer">CC BY 4.0</a>.
+          Covers from Standard Ebooks and Project Gutenberg, in the public domain.
+        </p>
+      </div>
     </footer>
-    <dialog id="reader-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description">
-      <div class="dialog-toolbar">
-        <div>
-          <h2 id="dialog-title">The last train</h2>
-          <p id="dialog-description">An interactive reading concept</p>
-        </div>
-        <button class="close-reader" id="close-reader" aria-label="Close reader" autofocus>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
-        </button>
-      </div>
-      <div class="reader-modes" role="group" aria-label="Reading mode">
-        <button id="mode-page" aria-pressed="true">Page</button
-        ><button id="mode-scroll" aria-pressed="false">Scroll</button>
-      </div>
-      <div
-        class="dialog-canvas"
-        id="reader-canvas"
-        tabindex="0"
-        aria-label="Manga artwork. Choose scroll mode to scroll through the page."
-      >
-        <img
-          data-src="/assets/images/last-train.webp"
-          alt="A courier stands on a train above a detailed coastal city. Below, a close-up of their face and train tracks leading to mountains."
-          width="1024"
-          height="1536"
-        />
-        <div
-          class="reader-strip"
-          role="img"
-          aria-label="A courier rides a train through a coastal city, followed by a close-up of their face and tracks leading to mountains."
-        >
-          <div class="strip-panel strip-city">
-            <img data-src="/assets/images/last-train.webp" alt="" />
-          </div>
-          <div class="strip-panel strip-face">
-            <img data-src="/assets/images/last-train.webp" alt="" />
-          </div>
-          <div class="strip-panel strip-rails">
-            <img data-src="/assets/images/last-train.webp" alt="" />
-          </div>
-        </div>
-      </div>
-      <p class="dialog-note" id="mode-note" aria-live="polite">
-        The whole page, with room to breathe.
-      </p>
-    </dialog>
   </body>
 </html>

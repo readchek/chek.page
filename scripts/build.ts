@@ -30,19 +30,26 @@ for await (const name of new Bun.Glob("*.woff2").scan(resolve(root, "public/asse
   immutablePaths.push(`/${path}`)
 }
 
-// The full artwork stays off the initial download but uses a versioned URL too.
-const artwork = Bun.file(resolve(root, "public/assets/images/last-train.webp"))
+// The bundler can't see the upright film's poster, which the script picks on
+// phones, so it gets its versioned URL here.
+const poster = Bun.file(resolve(root, "public/assets/video/promo-9x16-poster.webp"))
 const hash = new Bun.CryptoHasher("sha256")
-  .update(await artwork.arrayBuffer())
+  .update(await poster.arrayBuffer())
   .digest("hex")
   .slice(0, 12)
-const artworkPath = `/assets/images/last-train-${hash}.webp`
-await Bun.write(resolve(dist, artworkPath.slice(1)), artwork)
-immutablePaths.push(artworkPath)
+const posterPath = `/assets/video/promo-9x16-poster-${hash}.webp`
+await Bun.write(resolve(dist, posterPath.slice(1)), poster)
+immutablePaths.push(posterPath)
 const index = Bun.file(resolve(dist, "index.html"))
 await Bun.write(
   index,
-  (await index.text()).replaceAll("/assets/images/last-train.webp", artworkPath),
+  (await index.text()).replaceAll("/assets/video/promo-9x16-poster.webp", posterPath),
+)
+
+// Link previews need a stable absolute URL, so the share image keeps its name.
+await Bun.write(
+  resolve(dist, "assets/images/og.jpg"),
+  Bun.file(resolve(root, "public/assets/images/og.jpg")),
 )
 
 // The official extension repository, built with `chek ext build`. Components carry their version in their names, so they're

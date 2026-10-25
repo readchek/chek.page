@@ -1,70 +1,63 @@
-const dialog = document.querySelector<HTMLDialogElement>("#reader-dialog")!
-const canvas = document.querySelector<HTMLDivElement>("#reader-canvas")!
-const pageButton = document.querySelector<HTMLButtonElement>("#mode-page")!
-const scrollButton = document.querySelector<HTMLButtonElement>("#mode-scroll")!
-const note = document.querySelector<HTMLParagraphElement>("#mode-note")!
-const images = Array.from(dialog.querySelectorAll<HTMLImageElement>("img[data-src]"))
-let artworkState: "idle" | "loading" | "ready" | "error" = "idle"
-let trigger: HTMLElement | null = null
+const header = document.querySelector<HTMLElement>("#site-header")!
+const hero = document.querySelector<HTMLElement>(".hero")!
+const video = document.querySelector<HTMLVideoElement>("#film")!
+const playButton = document.querySelector<HTMLButtonElement>("#film-play")!
+const soundButton = document.querySelector<HTMLButtonElement>("#film-sound")!
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)")
 
-function updateNote() {
-  canvas.setAttribute("aria-busy", String(artworkState === "loading"))
-  note.textContent =
-    artworkState === "loading"
-      ? "Loading the detailed page. You can keep reading the preview."
-      : artworkState === "error"
-        ? "Showing the preview. Close and reopen to retry the detailed page."
-        : canvas.classList.contains("scroll-mode")
-          ? "Take your time. Scroll to explore the artwork."
-          : "The whole page, with room to breathe."
+// The header sits on the blue hero until the hero scrolls away.
+new IntersectionObserver(([entry]) => header.classList.toggle("is-solid", !entry!.isIntersecting), {
+  rootMargin: "-76px 0px 0px 0px",
+}).observe(hero)
+
+const reveals = new IntersectionObserver(
+  (entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue
+      entry.target.classList.add("is-visible")
+      reveals.unobserve(entry.target)
+    }
+  },
+  { rootMargin: "0px 0px -8% 0px" },
+)
+for (const element of document.querySelectorAll(".reveal")) reveals.observe(element)
+
+// The tall cut plays on phones held upright; its poster should match.
+if (matchMedia("(max-width: 640px) and (orientation: portrait)").matches) {
+  video.poster = video.dataset.posterTall!
 }
 
-async function loadArtwork() {
-  if (artworkState === "loading" || artworkState === "ready") return
-  artworkState = "loading"
-  const preview = document.querySelector<HTMLImageElement>(".phone-page img")!
-  for (const image of images) image.src = preview.currentSrc || preview.src
-  updateNote()
-  try {
-    const detailed = new Image()
-    detailed.src = images[0]!.dataset.src!
-    await detailed.decode()
-    for (const image of images) image.src = detailed.src
-    artworkState = "ready"
-  } catch {
-    artworkState = "error"
+function setLabel(button: HTMLButtonElement, pressed: boolean, label: string) {
+  button.setAttribute("aria-pressed", String(pressed))
+  button.querySelector(".film-label")!.textContent = label
+}
+video.addEventListener("play", () => setLabel(playButton, true, "Pause"))
+video.addEventListener("pause", () => setLabel(playButton, false, "Play"))
+video.addEventListener("volumechange", () =>
+  setLabel(soundButton, !video.muted, video.muted ? "Sound on" : "Sound off"),
+)
+soundButton.addEventListener("click", () => {
+  video.muted = !video.muted
+  if (video.paused) {
+    pausedByViewer = false
+    void video.play()
   }
-  updateNote()
-}
-
-function setMode(scroll: boolean) {
-  canvas.classList.toggle("scroll-mode", scroll)
-  pageButton.setAttribute("aria-pressed", String(!scroll))
-  scrollButton.setAttribute("aria-pressed", String(scroll))
-  canvas.scrollTo({ top: 0, left: 0, behavior: "instant" })
-  updateNote()
-}
-
-for (const id of ["open-reader", "open-reader-secondary", "open-reader-hero"]) {
-  document.getElementById(id)!.addEventListener("click", (event) => {
-    trigger = event.currentTarget as HTMLElement
-    setMode(false)
-    dialog.showModal()
-    void loadArtwork()
-  })
-}
-document.getElementById("close-reader")!.addEventListener("click", () => dialog.close())
-dialog.addEventListener("close", () => trigger?.focus({ preventScroll: true }))
-pageButton.addEventListener("click", () => setMode(false))
-scrollButton.addEventListener("click", () => setMode(true))
-dialog.addEventListener("click", (event) => {
-  const bounds = dialog.getBoundingClientRect()
-  if (
-    event.target === dialog &&
-    (event.clientX < bounds.left ||
-      event.clientX > bounds.right ||
-      event.clientY < bounds.top ||
-      event.clientY > bounds.bottom)
-  )
-    dialog.close()
 })
+
+// Play the film muted while it's on screen, unless someone paused it or
+// prefers less motion. Nothing downloads until it first comes into view.
+let pausedByViewer = false
+playButton.addEventListener("click", () => {
+  pausedByViewer = !video.paused
+  if (pausedByViewer) video.pause()
+  else void video.play()
+})
+const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
+  ?.saveData
+new IntersectionObserver(
+  ([entry]) => {
+    if (!entry!.isIntersecting) return video.pause()
+    if (!reducedMotion.matches && !saveData && !pausedByViewer) void video.play().catch(() => {})
+  },
+  { threshold: 0.5 },
+).observe(video)

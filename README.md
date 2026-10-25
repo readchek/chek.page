@@ -6,8 +6,8 @@
 
 <p align="center">The landing page for <a href="https://github.com/readchek/chek">Chek</a>, live at <a href="https://chek.page">chek.page</a>.</p>
 
-The page includes an interactive reading preview. The preview is a concept, not
-a connected reader client.
+The page introduces the Chek app on the App Store with its real screens and
+launch film.
 
 ## Development
 

@@ -11,7 +11,9 @@ const server = Bun.serve({
     if (pathname === "/favicon.ico") {
       return new Response(Bun.file(new URL("../public/assets/logos/favicon.ico", import.meta.url)))
     }
-    if (!/^\/(?:assets\/(?:fonts|logos|images)|extensions)\/[a-zA-Z0-9._-]+$/.test(pathname)) {
+    if (
+      !/^\/(?:assets\/(?:fonts|logos|images|video)|extensions)\/[a-zA-Z0-9._-]+$/.test(pathname)
+    ) {
       return new Response("Not found", { status: 404 })
     }
     const file = Bun.file(new URL(`../public${pathname}`, import.meta.url))
