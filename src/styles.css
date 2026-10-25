@@ -162,6 +162,14 @@ button:focus-visible,
   backdrop-filter: saturate(1.6) blur(18px);
   -webkit-backdrop-filter: saturate(1.6) blur(18px);
 }
+/* Over the hero, once the page moves, a blue glass bar keeps the hero's
+   words from running under the header. */
+.site-header.is-scrolled:not(.is-solid) {
+  background: color-mix(in srgb, var(--blue) 84%, transparent);
+  box-shadow: 0 1px 0 #ffffff24;
+  backdrop-filter: saturate(1.4) blur(18px);
+  -webkit-backdrop-filter: saturate(1.4) blur(18px);
+}
 .site-header.is-solid .brand {
   color: var(--blue);
 }
@@ -386,10 +394,14 @@ button:focus-visible,
   height: clamp(380px, 46vw, 600px);
   margin-top: 72px;
 }
+/* Phones rise from the hero's bottom edge but never above the stage, so the
+   words above always keep the stage's top margin to themselves. */
 .hero-stage .phone {
   position: absolute;
   bottom: 0;
   left: 50%;
+  max-height: 100%;
+  overflow: hidden;
 }
 .phone-center {
   z-index: 3;

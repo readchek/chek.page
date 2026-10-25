@@ -5,6 +5,10 @@ const playButton = document.querySelector<HTMLButtonElement>("#film-play")!
 const soundButton = document.querySelector<HTMLButtonElement>("#film-sound")!
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)")
 
+const markScrolled = () => header.classList.toggle("is-scrolled", scrollY > 8)
+addEventListener("scroll", markScrolled, { passive: true })
+markScrolled()
+
 // The header sits on the blue hero until the hero scrolls away.
 new IntersectionObserver(([entry]) => header.classList.toggle("is-solid", !entry!.isIntersecting), {
   rootMargin: "-76px 0px 0px 0px",
