@@ -19,7 +19,9 @@
       property="og:description"
       content="A reader for your books and comics, on your iPhone and iPad. Free on the App Store."
     />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:image" content="https://chek.page/assets/images/og.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
@@ -27,6 +29,16 @@
       content="Three iPhones showing Chek's home, a comic and a book, under the words Just one more chapter."
     />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Chek: Books & Comics — Just one more chapter." />
+    <meta
+      name="twitter:description"
+      content="A reader for your books and comics, on your iPhone and iPad. Free on the App Store."
+    />
+    <meta name="twitter:image" content="https://chek.page/assets/images/og.jpg" />
+    <meta
+      name="twitter:image:alt"
+      content="Three iPhones showing Chek's home, a comic and a book, under the words Just one more chapter."
+    />
     <link rel="icon" href="../public/assets/logos/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="icon" href="../public/assets/logos/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="icon" href="../public/assets/logos/mark.svg" type="image/svg+xml" sizes="any" />
@@ -106,6 +118,7 @@
 
     <main id="main">
       <section class="hero" id="top" aria-labelledby="hero-title">
+        <span class="scroll-sentinel" id="scroll-sentinel" aria-hidden="true"></span>
         <div class="hero-copy wrap">
           <a class="launch-pill" href="https://apps.apple.com/app/chek-books-comics/id6761271144"
             ><span class="pill-dot" aria-hidden="true"></span>Chek 2.0 is out now on the App Store
@@ -144,6 +157,7 @@
               width="480"
               height="664"
               decoding="async"
+              fetchpriority="low"
             />
           </div>
           <div class="float float-cover float-b">
@@ -152,6 +166,7 @@
               alt=""
               width="300"
               height="450"
+              loading="lazy"
               decoding="async"
             />
           </div>
@@ -161,6 +176,7 @@
               alt=""
               width="300"
               height="429"
+              loading="lazy"
               decoding="async"
             />
           </div>
@@ -171,10 +187,17 @@
               width="480"
               height="664"
               decoding="async"
+              fetchpriority="low"
             />
           </div>
           <div class="phone phone-side phone-left">
             <picture>
+              <source
+                type="image/avif"
+                media="(min-resolution: 1.5dppx)"
+                srcset="../public/assets/images/iphone-comic-720.avif"
+              />
+              <source type="image/avif" srcset="../public/assets/images/iphone-comic-360.avif" />
               <source
                 media="(min-resolution: 1.5dppx)"
                 srcset="../public/assets/images/iphone-comic-720.webp"
@@ -185,11 +208,18 @@
                 width="1008"
                 height="2056"
                 decoding="async"
+                fetchpriority="low"
               />
             </picture>
           </div>
           <div class="phone phone-center">
             <picture>
+              <source
+                type="image/avif"
+                media="(min-resolution: 1.5dppx)"
+                srcset="../public/assets/images/iphone-home-720.avif"
+              />
+              <source type="image/avif" srcset="../public/assets/images/iphone-home-360.avif" />
               <source
                 media="(min-resolution: 1.5dppx)"
                 srcset="../public/assets/images/iphone-home-720.webp"
@@ -206,6 +236,15 @@
           <div class="phone phone-side phone-right">
             <picture>
               <source
+                type="image/avif"
+                media="(min-resolution: 1.5dppx)"
+                srcset="../public/assets/images/iphone-appearance-720.avif"
+              />
+              <source
+                type="image/avif"
+                srcset="../public/assets/images/iphone-appearance-360.avif"
+              />
+              <source
                 media="(min-resolution: 1.5dppx)"
                 srcset="../public/assets/images/iphone-appearance-720.webp"
               />
@@ -215,6 +254,7 @@
                 width="1008"
                 height="2056"
                 decoding="async"
+                fetchpriority="low"
               />
             </picture>
           </div>
@@ -268,6 +308,12 @@
             <div class="phone">
               <picture>
                 <source
+                  type="image/avif"
+                  media="(min-resolution: 1.5dppx)"
+                  srcset="../public/assets/images/iphone-comic-720.avif"
+                />
+                <source type="image/avif" srcset="../public/assets/images/iphone-comic-360.avif" />
+                <source
                   media="(min-resolution: 1.5dppx)"
                   srcset="../public/assets/images/iphone-comic-720.webp"
                 />
@@ -311,6 +357,15 @@
             <div class="phone">
               <picture>
                 <source
+                  type="image/avif"
+                  media="(min-resolution: 1.5dppx)"
+                  srcset="../public/assets/images/iphone-appearance-720.avif"
+                />
+                <source
+                  type="image/avif"
+                  srcset="../public/assets/images/iphone-appearance-360.avif"
+                />
+                <source
                   media="(min-resolution: 1.5dppx)"
                   srcset="../public/assets/images/iphone-appearance-720.webp"
                 />
@@ -344,6 +399,15 @@
             <div class="phone">
               <picture>
                 <source
+                  type="image/avif"
+                  media="(min-resolution: 1.5dppx)"
+                  srcset="../public/assets/images/iphone-library-720.avif"
+                />
+                <source
+                  type="image/avif"
+                  srcset="../public/assets/images/iphone-library-360.avif"
+                />
+                <source
                   media="(min-resolution: 1.5dppx)"
                   srcset="../public/assets/images/iphone-library-720.webp"
                 />
@@ -372,6 +436,15 @@
               <div class="phone">
                 <picture>
                   <source
+                    type="image/avif"
+                    media="(min-resolution: 1.5dppx)"
+                    srcset="../public/assets/images/iphone-search-720.avif"
+                  />
+                  <source
+                    type="image/avif"
+                    srcset="../public/assets/images/iphone-search-360.avif"
+                  />
+                  <source
                     media="(min-resolution: 1.5dppx)"
                     srcset="../public/assets/images/iphone-search-720.webp"
                   />
@@ -394,6 +467,12 @@
               <div class="phone">
                 <picture>
                   <source
+                    type="image/avif"
+                    media="(min-resolution: 1.5dppx)"
+                    srcset="../public/assets/images/iphone-site-720.avif"
+                  />
+                  <source type="image/avif" srcset="../public/assets/images/iphone-site-360.avif" />
+                  <source
                     media="(min-resolution: 1.5dppx)"
                     srcset="../public/assets/images/iphone-site-720.webp"
                   />
@@ -415,6 +494,15 @@
             <div class="tile-shot">
               <div class="phone">
                 <picture>
+                  <source
+                    type="image/avif"
+                    media="(min-resolution: 1.5dppx)"
+                    srcset="../public/assets/images/iphone-shared-720.avif"
+                  />
+                  <source
+                    type="image/avif"
+                    srcset="../public/assets/images/iphone-shared-360.avif"
+                  />
                   <source
                     media="(min-resolution: 1.5dppx)"
                     srcset="../public/assets/images/iphone-shared-720.webp"
@@ -517,6 +605,12 @@
           <div class="tablet">
             <picture>
               <source
+                type="image/avif"
+                media="(min-resolution: 1.5dppx)"
+                srcset="../public/assets/images/ipad-home-1400.avif"
+              />
+              <source type="image/avif" srcset="../public/assets/images/ipad-home-800.avif" />
+              <source
                 media="(min-resolution: 1.5dppx)"
                 srcset="../public/assets/images/ipad-home-1400.webp"
               />
@@ -532,6 +626,12 @@
           </div>
           <div class="phone ipad-phone">
             <picture>
+              <source
+                type="image/avif"
+                media="(min-resolution: 1.5dppx)"
+                srcset="../public/assets/images/iphone-comic-720.avif"
+              />
+              <source type="image/avif" srcset="../public/assets/images/iphone-comic-360.avif" />
               <source
                 media="(min-resolution: 1.5dppx)"
                 srcset="../public/assets/images/iphone-comic-720.webp"
@@ -562,7 +662,7 @@
               muted
               loop
               preload="none"
-              poster="../public/assets/video/promo-16x9-poster.webp"
+              data-poster="/assets/video/promo-16x9-poster.webp"
               data-poster-tall="/assets/video/promo-9x16-poster.webp"
               aria-label="Chek launch film: the home screen, a comic, a book in sepia, search and a shared family library"
             >

@@ -5,9 +5,10 @@ const playButton = document.querySelector<HTMLButtonElement>("#film-play")!
 const soundButton = document.querySelector<HTMLButtonElement>("#film-sound")!
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)")
 
-const markScrolled = () => header.classList.toggle("is-scrolled", scrollY > 8)
-addEventListener("scroll", markScrolled, { passive: true })
-markScrolled()
+// Watched rather than read from scrollY, which would force a layout at load.
+new IntersectionObserver(([entry]) =>
+  header.classList.toggle("is-scrolled", !entry!.isIntersecting),
+).observe(document.querySelector("#scroll-sentinel")!)
 
 // The header sits on the blue hero until the hero scrolls away.
 new IntersectionObserver(([entry]) => header.classList.toggle("is-solid", !entry!.isIntersecting), {
@@ -26,10 +27,18 @@ const reveals = new IntersectionObserver(
 )
 for (const element of document.querySelectorAll(".reveal")) reveals.observe(element)
 
-// The tall cut plays on phones held upright; its poster should match.
-if (matchMedia("(max-width: 640px) and (orientation: portrait)").matches) {
-  video.poster = video.dataset.posterTall!
-}
+// The poster waits until the film is near, so it doesn't compete with the
+// hero. The tall cut plays on phones held upright, and its poster matches.
+const posterObserver = new IntersectionObserver(
+  ([entry]) => {
+    if (!entry!.isIntersecting) return
+    const tall = matchMedia("(max-width: 640px) and (orientation: portrait)").matches
+    video.poster = tall ? video.dataset.posterTall! : video.dataset.poster!
+    posterObserver.disconnect()
+  },
+  { rootMargin: "800px 0px" },
+)
+posterObserver.observe(video)
 
 function setLabel(button: HTMLButtonElement, pressed: boolean, label: string) {
   button.setAttribute("aria-pressed", String(pressed))

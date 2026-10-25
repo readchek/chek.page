@@ -35,7 +35,9 @@ Generated output is ignored by Git.
 - `public/assets/fonts/`: local typefaces and their licenses.
 - `public/assets/logos/`: Chek and official provider marks.
 - `public/assets/images/`: app screens, covers, comic pages, the app icon and
-  the link preview image.
+  the link preview image. Each screen comes as AVIF and WebP at 1x and 2x;
+  pages offer them through `<picture>`, because the bundler reads `srcset` as
+  one URL.
 - `public/assets/video/`: the launch film's posters. The film itself is on R2.
 - `public/extensions/`: the official extension repository, served at
   `https://chek.page/extensions/index.json`, which Chek servers list by
@@ -82,14 +84,16 @@ latter for phones held upright, rather than from this repository. Replace those
 files to change the film, keeping it fast-start (`-movflags +faststart`) so it
 streams, and regenerate the posters here. It loads only when
 it scrolls into view, then plays muted and loops, unless the visitor prefers
-reduced motion or saves data. Its posters are the title frame, 4 seconds in.
+reduced motion or saves data. Its posters are the title frame, 4 seconds in,
+and the script sets the one that fits only when the film is near, so neither
+competes with the hero on first load.
 
 Production uses three local WOFF2 fonts, about 73 KB combined, preloaded with
 matching anonymous CORS mode. Original TTF files remain as masters; only WOFF2
 files are deployed. Fonts stay separate from the stylesheet. The local
 development bundler may embed fonts.
 
-Font filenames include the first 12 characters of their SHA-256 content hash. Regenerate their names, CSS references, and preload links together if the font files change. The build generates `_headers` rules with `Cache-Control: public, max-age=31536000, immutable` for versioned fonts, CSS, JavaScript, artwork, provider marks, and favicon assets. HTML, `og.jpg` and the conventional `/favicon.ico` keep Cloudflare's default revalidation policy, so future releases still appear. The upright film's poster, which the script picks, also receives a content-hashed URL during the build.
+Font filenames include the first 12 characters of their SHA-256 content hash. Regenerate their names, CSS references, and preload links together if the font files change. The build generates `_headers` rules with `Cache-Control: public, max-age=31536000, immutable` for versioned fonts, CSS, JavaScript, artwork, provider marks, and favicon assets. HTML, `og.jpg` and the conventional `/favicon.ico` keep Cloudflare's default revalidation policy, so future releases still appear. Both film posters, which the script picks, also receive content-hashed URLs during the build. Each page's stylesheet is inlined into its HTML at build time, so the first paint waits on one request.
 
 Sections fade in as they scroll into view only when scripts run and motion is welcome. Pointer hover effects are gated to suitable devices, and links and buttons have 44px hit areas.
 
