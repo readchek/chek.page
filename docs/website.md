@@ -16,7 +16,12 @@ The preview runs at [localhost:18357](http://127.0.0.1:18357/). Override with
 
 ## Deployment
 
-After signing in with `cf auth login`:
+Every push to `main` deploys the site through the Deploy workflow in
+`.github/workflows/deploy.yml`, after the same checks CI runs. It signs in
+with the `CLOUDFLARE_API_TOKEN` repository secret. To redeploy without a
+push, run the workflow from the Actions tab.
+
+To deploy from your own machine, sign in with `cf auth login` and run:
 
 ```sh
 bun run deploy
