@@ -20,6 +20,18 @@ const build = await Bun.build({
 })
 if (!build.success) throw new AggregateError(build.logs, "Website build failed")
 
+// Each page's stylesheet is small, so it goes inline: the first paint then
+// waits on one request, not two.
+for (const output of build.outputs.filter((output) => output.path.endsWith(".html"))) {
+  const page = Bun.file(output.path)
+  let html = await page.text()
+  for (const [tag, href] of html.matchAll(/<link rel="stylesheet"[^>]*href="\.\/([^"]+\.css)">/g)) {
+    const css = await Bun.file(resolve(dist, href!)).text()
+    html = html.replace(tag, () => `<style>${css}</style>`)
+  }
+  await Bun.write(page, html)
+}
+
 // Only versioned URLs receive immutable caching. HTML always checks for updates.
 const immutablePaths = build.outputs
   .filter((output) => !output.path.endsWith(".html"))
@@ -30,21 +42,22 @@ for await (const name of new Bun.Glob("*.woff2").scan(resolve(root, "public/asse
   immutablePaths.push(`/${path}`)
 }
 
-// The bundler can't see the upright film's poster, which the script picks on
-// phones, so it gets its versioned URL here.
-const poster = Bun.file(resolve(root, "public/assets/video/promo-9x16-poster.webp"))
-const hash = new Bun.CryptoHasher("sha256")
-  .update(await poster.arrayBuffer())
-  .digest("hex")
-  .slice(0, 12)
-const posterPath = `/assets/video/promo-9x16-poster-${hash}.webp`
-await Bun.write(resolve(dist, posterPath.slice(1)), poster)
-immutablePaths.push(posterPath)
+// The bundler can't see the film's posters, which the script sets once the
+// film is near, so they get their versioned URLs here.
 const index = Bun.file(resolve(dist, "index.html"))
-await Bun.write(
-  index,
-  (await index.text()).replaceAll("/assets/video/promo-9x16-poster.webp", posterPath),
-)
+let indexHtml = await index.text()
+for (const shape of ["16x9", "9x16"]) {
+  const poster = Bun.file(resolve(root, `public/assets/video/promo-${shape}-poster.webp`))
+  const hash = new Bun.CryptoHasher("sha256")
+    .update(await poster.arrayBuffer())
+    .digest("hex")
+    .slice(0, 12)
+  const posterPath = `/assets/video/promo-${shape}-poster-${hash}.webp`
+  await Bun.write(resolve(dist, posterPath.slice(1)), poster)
+  immutablePaths.push(posterPath)
+  indexHtml = indexHtml.replaceAll(`/assets/video/promo-${shape}-poster.webp`, posterPath)
+}
+await Bun.write(index, indexHtml)
 
 // Link previews need a stable absolute URL, so the share image keeps its name.
 await Bun.write(
