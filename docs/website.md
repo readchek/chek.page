@@ -75,6 +75,12 @@ the bezel and Dynamic Island in CSS. Each is a WebP at quality 80, 360px and
 720px wide for iPhone and 800px and 1400px for iPad, picked by screen density.
 Redo them when the App Store art changes.
 
+The web app's screens (`web-home`, `web-comic`) are Playwright captures of
+app.chek.page signed in to the demo, at 1280 × 720 and 1280 × 800 with a 2x
+scale, saved at 1100px and 2200px (560px and 1120px for the comic). The page
+draws the browser windows around them in CSS. Recapture them when the web app's
+look changes.
+
 Covers come from Standard Ebooks and Project Gutenberg, in the public domain, and
 the comic pages from Pepper&Carrot by David Revoy, CC BY 4.0, which the footer
 credits. They're the ones the App Store art and the film use.
