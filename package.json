@@ -13,11 +13,11 @@
     "format:check": "oxfmt --check ."
   },
   "devDependencies": {
-    "@cloudflare/build-output-utils": "0.9.3",
+    "@cloudflare/build-output-utils": "0.9.4",
     "@types/bun": "latest",
     "cf": "^1.0.0-beta.13",
-    "oxfmt": "^0.73.0",
-    "oxlint": "^1.86.0",
+    "oxfmt": "^0.74.0",
+    "oxlint": "^1.89.0",
     "typescript": "^7"
   },
   "packageManager": "bun@1.4.3"
